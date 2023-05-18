@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hotel_management_webapp/pages/home.dart';
+import 'package:flutter_hotel_management_webapp/pages/hoteldetailpage.dart';
+import 'package:flutter_hotel_management_webapp/pages/hotelsearchpage.dart';
 import 'package:flutter_hotel_management_webapp/pages/yourkindofstay.dart';
 
 void main() {
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: YourKindOfStay(),
+      home: HotelDetailPage(),
     );
   }
 }
