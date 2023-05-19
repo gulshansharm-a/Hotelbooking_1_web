@@ -60,42 +60,42 @@ class _YourKindOfStayState extends State<YourKindOfStay> {
         place: "Delhi",
         rating: "4.5",
         coverPage:
-            "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"),
+            "https://images.unsplash.com/photo-1528105817752-5c47696eef04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1484&q=80"),
     Hotel(
         name: "Sunset Inn",
         cost: "3,493",
         place: "Delhi",
         rating: "4.5",
         coverPage:
-            "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"),
+            "https://images.unsplash.com/photo-1528105817752-5c47696eef04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1484&q=80"),
     Hotel(
         name: "Sunset Inn",
         cost: "3,493",
         place: "Delhi",
         rating: "4.5",
         coverPage:
-            "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"),
+            "https://images.unsplash.com/photo-1528105817752-5c47696eef04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1484&q=80"),
     Hotel(
         name: "Sunset Inn",
         cost: "3,493",
         place: "Delhi",
         rating: "4.5",
         coverPage:
-            "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"),
+            "https://images.unsplash.com/photo-1528105817752-5c47696eef04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1484&q=80"),
     Hotel(
         name: "Sunset Inn",
         cost: "3,493",
         place: "Delhi",
         rating: "4.5",
         coverPage:
-            "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"),
+            "https://images.unsplash.com/photo-1528105817752-5c47696eef04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1484&q=80"),
     Hotel(
         name: "Sunset Inn",
         cost: "3,493",
         place: "Delhi",
         rating: "4.5",
         coverPage:
-            "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"),
+            "https://images.unsplash.com/photo-1528105817752-5c47696eef04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1484&q=80"),
   ];
   final Color _primaryColor = Color(0xFFE1F3FF);
   @override
@@ -114,10 +114,261 @@ class _YourKindOfStayState extends State<YourKindOfStay> {
           _listHeading(_screenSize),
           _lastMinuteHotels(_screenSize),
           _trendingHotels(_screenSize),
+          _moreAccomodations(_screenSize),
+          _pageFooter(_screenSize),
         ],
       )),
     );
   }
+
+  Padding _pageFooter(Size _screenSize) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(
+                _screenSize.width * 0.05, 20, _screenSize.width * 0.05, 10),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Image.asset("images/BG1.jpg"),
+          Container(
+            width: _screenSize.width * 0.6,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 180,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 100,
+                        height: 50,
+                        child: Image.asset('/images/Easyatra.png'),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Easyatra provides good deals on',
+                            style: TextStyle(
+                              decoration: TextDecoration.none,
+                              color: Colors.black,
+                              fontFamily: 'Poppins',
+                              fontSize: _screenSize.width * 0.01,
+                              fontWeight: FontWeight.w400,
+                              height: 1.3, // equivalent to line-height in CSS
+                              letterSpacing:
+                                  0, // equivalent to letter-spacing in CSS
+                            ),
+                          ),
+                          Text(
+                            'hotel booking and provides you',
+                            style: TextStyle(
+                              decoration: TextDecoration.none,
+                              color: Colors.black,
+                              fontFamily: 'Poppins',
+                              fontSize: _screenSize.width * 0.01,
+                              fontWeight: FontWeight.w400,
+                              height: 1.3, // equivalent to line-height in CSS
+                              letterSpacing:
+                                  0, // equivalent to letter-spacing in CSS
+                            ),
+                          ),
+                          Text(
+                            'great and awesome offers.',
+                            style: TextStyle(
+                              decoration: TextDecoration.none,
+                              color: Colors.black,
+                              fontFamily: 'Poppins',
+                              fontSize: _screenSize.width * 0.01,
+                              fontWeight: FontWeight.w400,
+                              height: 1.3, // equivalent to line-height in CSS
+                              letterSpacing:
+                                  0, // equivalent to letter-spacing in CSS
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: _screenSize.height * 0.02,
+                      ),
+                      Container(
+                        width: _screenSize.width * 0.11,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset('/images/1.png'),
+                            Image.asset('/images/2.png'),
+                            Image.asset('/images/3.png'),
+                            Image.asset('/images/4.png'),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  height: _screenSize.height * 0.3,
+                  width: _screenSize.width * 0.1,
+                  child: Image.asset("images/playstore.png"),
+                ),
+                Container(
+                  height: _screenSize.height * 0.3,
+                  width: _screenSize.width * 0.1,
+                  child: Image.asset("images/appstore.png"),
+                ),
+                Container(
+                  height: 180,
+                  padding: EdgeInsets.fromLTRB(0, _screenSize.height * 0.015, 0,
+                      _screenSize.height * 0.015),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Help',
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        'Customer Support',
+                        style: TextStyle(
+                          decoration: TextDecoration.none,
+                          color: Colors.black,
+                          fontFamily: 'Poppins',
+                          fontSize: _screenSize.width * 0.01,
+                          fontWeight: FontWeight.w400,
+                          height: 1.3, // equivalent to line-height in CSS
+                          letterSpacing: 0, // equivalent to letter-spacing in CSS
+                        ),
+                      ),
+                      Text(
+                        'Booking Details',
+                        style: TextStyle(
+                          decoration: TextDecoration.none,
+                          color: Colors.black,
+                          fontFamily: 'Poppins',
+                          fontSize: _screenSize.width * 0.01,
+                          fontWeight: FontWeight.w400,
+                          height: 1.3, // equivalent to line-height in CSS
+                          letterSpacing: 0, // equivalent to letter-spacing in CSS
+                        ),
+                      ),
+                      Text(
+                        'Terms & Conditions',
+                        style: TextStyle(
+                          decoration: TextDecoration.none,
+                          color: Colors.black,
+                          fontFamily: 'Poppins',
+                          fontSize: _screenSize.width * 0.01,
+                          fontWeight: FontWeight.w400,
+                          height: 1.3, // equivalent to line-height in CSS
+                          letterSpacing: 0, // equivalent to letter-spacing in CSS
+                        ),
+                      ),
+                      Text(
+                        'Privacy Policy',
+                        style: TextStyle(
+                          decoration: TextDecoration.none,
+                          color: Colors.black,
+                          fontFamily: 'Poppins',
+                          fontSize: _screenSize.width * 0.01,
+                          fontWeight: FontWeight.w400,
+                          height: 1.3, // equivalent to line-height in CSS
+                          letterSpacing: 0, // equivalent to letter-spacing in CSS
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+  Padding _moreAccomodations(Size _screenSize) {
+    return Padding(
+              padding: EdgeInsets.fromLTRB(
+                _screenSize.width * 0.05, 20, _screenSize.width * 0.05, 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Popular Locations",
+                      style: TextStyle(
+                        fontFamily: 'Satoshi Variable',
+                        fontSize: _screenSize.width * 0.02,
+                        fontWeight: FontWeight.w700,
+                        height: 1.357,
+                        letterSpacing: -0.1850000023841858,
+                      )),
+                  SizedBox(
+                    height: _screenSize.height * 0.03,
+                  ),
+                  Container(
+                    height: _screenSize.height * 0.5,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(children: [
+                            _moreAccomodationCard(_screenSize),
+                            _moreAccomodationCard(_screenSize),
+                            _moreAccomodationCard(_screenSize),
+                            _moreAccomodationCard(_screenSize),
+                            _moreAccomodationCard(_screenSize),
+                          ]),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+  }
+
+  Container _moreAccomodationCard(Size _screenSize) {
+    return Container(
+      height: _screenSize.height * 0.48,
+      width: _screenSize.width * 0.25,
+      padding: EdgeInsets.fromLTRB(0, 0, _screenSize.width * 0.016, 0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            height: _screenSize.height * 0.43,
+            width: (_screenSize.width * 0.945) / 3,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(
+                      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"),
+                  fit: BoxFit.cover),
+              borderRadius: BorderRadius.circular(_screenSize.width * 0.02),
+            ),
+          ),
+          Text(
+            "Hotels",
+            style: TextStyle(
+              fontFamily: 'Satoshi Variable',
+              fontSize: _screenSize.width * 0.016,
+              fontWeight: FontWeight.w500,
+              height: 1.33,
+              letterSpacing: -1.319239854812622,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
 
   Column _trendingHotels(Size _screenSize) {
     return Column(
@@ -212,49 +463,101 @@ class _YourKindOfStayState extends State<YourKindOfStay> {
     );
   }
 
-  Card _lastMinuteHotelCard(Size _screenSize, Hotel hotel) {
-    return Card(
+  Padding _lastMinuteHotelCard(Size _screenSize, Hotel hotel) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(0, _screenSize.height * 0.02,
+          _screenSize.width * 0.01, _screenSize.width * 0.03),
       child: Container(
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(_screenSize.width * 0.01),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                offset: Offset(0, 2),
+                blurRadius: 4,
+                spreadRadius: 0,
+              ),
+            ],
+            border: Border.all(color: Colors.black, width: 0.2)),
         height: _screenSize.height * 0.4,
-        width: _screenSize.width * 0.44,
+        width: _screenSize.width * 0.43,
         child: Row(
-          
           children: [
             Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    image: DecorationImage(
-                        image: NetworkImage(hotel.coverPage ?? ""),
-                        fit: BoxFit.cover)),
-                height: _screenSize.height * 0.4,
-                width: _screenSize.width * 0.2),
+              width: _screenSize.width * 0.2,
+              height: _screenSize.height * 0.4,
+              decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                      image: NetworkImage(
+                          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"),
+                      fit: BoxFit.cover)),
+            ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Expanded(child: Container(child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
+                Container(
+                  width: _screenSize.width * 0.22,
+                  child: Padding(
+                    padding: EdgeInsets.all(_screenSize.width * 0.01),
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
                       children: [
-                        Text(hotel.name),
-                        Text(hotel.place),
+                        Container(
+                          height: _screenSize.height * 0.35,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    hotel.name,
+                                    style: TextStyle(
+                                      fontFamily: 'Satoshi Variable',
+                                      fontSize: _screenSize.width * 0.018,
+                                      fontWeight: FontWeight.w600,
+                                      height: 1.357,
+                                      letterSpacing: -0.40799999237060547,
+                                    ),
+                                  ),
+                                  Text(hotel.place,
+                                      style: TextStyle(
+                                        fontFamily: 'Satoshi Variable',
+                                        fontSize: _screenSize.width * 0.012,
+                                        fontWeight: FontWeight.w500,
+                                        height: 1.333,
+                                        letterSpacing: -0.40799999237060547,
+                                      ))
+                                ],
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Color(0xFFDA4167),
+                                ),
+                                padding: EdgeInsets.fromLTRB(5, 2, 5, 2),
+                                child: Text(hotel.rating + "/5",
+                                    style: TextStyle(
+                                        fontFamily: 'Satoshi Variable',
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                        height: 24 /
+                                            18, // Line height calculated by dividing line height by font size
+                                        letterSpacing: -0.903,
+                                        color: Colors.white)),
+                              ),
+                            ],
+                          ),
+                        ),
+                        _priceDetails(_screenSize),
                       ],
                     ),
-                    Text(hotel.rating + "/5"),
-                  ],
-                ),),),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Column(children: [
-                      Text("Starting From"),
-                    Text(hotel.cost),
-                    Text("per night"),
-                    ],)
-                  ],
-                ),
+                  ),
+                )
               ],
             ),
           ],
@@ -263,10 +566,78 @@ class _YourKindOfStayState extends State<YourKindOfStay> {
     );
   }
 
+  Container _priceDetails(Size _screenSize) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Text('Starting from',
+              style: TextStyle(
+                color: Colors.blue,
+                decoration: TextDecoration.none,
+
+                fontFamily: 'Satoshi Variable',
+                fontSize: _screenSize.width * 0.012,
+                fontWeight: FontWeight.w700,
+                height: 32 /
+                    24, // Line height calculated by dividing line height by font size
+                letterSpacing: -0.408,
+              )),
+          Text('₹ 4,433',
+              style: TextStyle(
+                decoration: TextDecoration.none,
+                color: Colors.black,
+                fontFamily: 'Satoshi Variable',
+                fontSize: _screenSize.width * 0.012,
+                fontWeight: FontWeight.w500,
+                height: 32 /
+                    24, // Line height calculated by dividing line height by font size
+                letterSpacing: -0.802,
+              )),
+          Text('₹ 3,493',
+              style: TextStyle(
+                decoration: TextDecoration.none,
+                color: Colors.black,
+                fontFamily: 'Satoshi Variable',
+                fontSize: _screenSize.width * 0.02,
+                fontWeight: FontWeight.w700,
+                height: 48 /
+                    35, // Line height calculated by dividing line height by font size
+                letterSpacing: -0.802,
+              )),
+          Text(
+            '+ ₹ 594 taxes and fee',
+            style: TextStyle(
+              decoration: TextDecoration.none,
+              color: Colors.black,
+              fontFamily: 'Satoshi Variable',
+              fontSize: _screenSize.width * 0.01,
+              fontWeight: FontWeight.w500,
+              height: 27 /
+                  20, // Line height calculated by dividing line height by font size
+              letterSpacing: -0.802,
+            ),
+          ),
+          Text("Per night",
+              style: TextStyle(
+                decoration: TextDecoration.none,
+                color: Colors.black,
+                fontFamily: 'Satoshi Variable',
+                fontSize: _screenSize.width * 0.01,
+                fontWeight: FontWeight.w500,
+                height: 27 /
+                    20, // Line height calculated by dividing line height by font size
+                letterSpacing: -0.802,
+              )),
+        ],
+      ),
+    );
+  }
+
   Container _lastMinuteHotels(Size _screenSize) {
     return Container(
         padding: EdgeInsets.fromLTRB(
-            _screenSize.width * 0.05, 20, _screenSize.width * 0.05, 10),
+            _screenSize.width * 0.05, 10, _screenSize.width * 0.05, 10),
         child: Column(
           children: [
             Row(
@@ -369,7 +740,7 @@ class _YourKindOfStayState extends State<YourKindOfStay> {
           ]),
         ),
         SizedBox(
-          height: _screenSize.height * 0.04,
+          height: _screenSize.height * 0.0,
         )
       ],
     );

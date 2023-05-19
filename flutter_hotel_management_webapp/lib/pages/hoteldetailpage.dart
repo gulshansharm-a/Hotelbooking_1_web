@@ -39,8 +39,186 @@ class _HotelDetailPageState extends State<HotelDetailPage> {
             color: Colors.black,
           ),
           _reviewSection(_screenSize),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Similar Hotels",
+                style: TextStyle(
+                  decoration: TextDecoration.none,
+                  color: Colors.black,
+                  fontFamily: 'Satoshi Variable',
+                  fontSize: _screenSize.height * 0.05,
+                  fontWeight: FontWeight.w700,
+                  height: 57 / 42, // line-height / font-size
+                  letterSpacing: -0.9034286141395569,
+                ),
+              ),
+              SizedBox(
+                height: _screenSize.height * 0.015,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(children: [
+                  _similarHotelCard(_screenSize),
+                  _similarHotelCard(_screenSize),
+                  _similarHotelCard(_screenSize),
+                  _similarHotelCard(_screenSize),
+                  _similarHotelCard(_screenSize),
+                ]),
+              ),
+            ],
+          ),
           _pageFooter(_screenSize),
         ]),
+      ),
+    );
+  }
+
+  Padding _similarHotelCard(Size _screenSize) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(0, _screenSize.height * 0.02,
+          _screenSize.width * 0.02, _screenSize.width * 0.05),
+      child: Container(
+        padding: EdgeInsets.all(_screenSize.width * 0.01),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0, 5.42905855178833),
+                blurRadius: 19.001707077026367,
+                spreadRadius: -1.809686303138733,
+                color: Color(0x18274B1F),
+              ),
+              BoxShadow(
+                offset: Offset(0, 3.619372606277466),
+                blurRadius: 8.143588066101074,
+                spreadRadius: -2.714529275894165,
+                color: Color(0x18274B1F),
+              )
+            ],
+            border: Border.all(color: Colors.black, width: 0.5),
+            borderRadius: BorderRadius.circular(_screenSize.width * 0.01)),
+        width: _screenSize.width * 0.295,
+        child: Column(
+          children: [
+            Stack(
+              alignment: Alignment.bottomRight,
+              children: [
+                Container(
+                    height: _screenSize.height * 0.4,
+                    width: _screenSize.width * 0.28,
+                    decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(_screenSize.width * 0.01),
+                        image: DecorationImage(
+                          image: NetworkImage(
+                            "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+                          ),
+                          fit: BoxFit.cover,
+                        ))),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Color(0xFFDA4167),
+                  ),
+                  padding: EdgeInsets.fromLTRB(5, 2, 5, 2),
+                  child: Text("4.5" + "/5",
+                      style: TextStyle(
+                          fontFamily: 'Satoshi Variable',
+                          fontSize: _screenSize.width * 0.01,
+                          fontWeight: FontWeight.w700,
+                          height: 24 /
+                              18, // Line height calculated by dividing line height by font size
+                          letterSpacing: -0.903,
+                          color: Colors.white)),
+                ),
+              ],
+            ),
+            SizedBox(height: _screenSize.height * 0.02),
+            Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Luxe Double Room",
+                              style: TextStyle(
+                                fontSize: _screenSize.width * 0.016,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontFamily: 'Satoshi Variable',
+
+                                fontWeight: FontWeight.w700,
+                                height: 43 / 32, // line-height / font-size
+                                letterSpacing: -0.9034286141395569,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "For 2 Adults",
+                                  style: TextStyle(
+                                    fontFamily: 'Satoshi Variable',
+                                    decoration: TextDecoration.none,
+                                    color: Colors.black,
+                                    fontSize: _screenSize.width * 0.011,
+                                    fontWeight: FontWeight.w400,
+                                    height: 35 / 26, // line-height / font-size
+                                    letterSpacing: -0.8015938997268677,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: _screenSize.height * 0.03),
+                        Container(
+                            width: _screenSize.width * 0.18,
+                            child: AutoSizeText(
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, ",
+                                style: TextStyle(
+                                  decoration: TextDecoration.none,
+                                  color: Colors.black,
+                                  fontFamily: 'Satoshi Variable',
+                                  fontSize: _screenSize.width * 0.01,
+                                  fontWeight: FontWeight.w500,
+                                  height: 1.3,
+                                  letterSpacing: -0.9128715395927429,
+                                ))),
+                      ]),
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.star,
+                              color: Colors.yellow,
+                              size: _screenSize.width * 0.015),
+                          Icon(Icons.star,
+                              color: Colors.yellow,
+                              size: _screenSize.width * 0.015),
+                          Icon(Icons.star,
+                              color: Colors.yellow,
+                              size: _screenSize.width * 0.015),
+                          Icon(Icons.star,
+                              color: Colors.yellow,
+                              size: _screenSize.width * 0.015),
+                          Icon(Icons.star_border,
+                              color: Colors.yellow,
+                              size: _screenSize.width * 0.015)
+                        ],
+                      ),
+                      _priceDetails(_screenSize),
+                    ],
+                  ),
+                ]),
+          ],
+        ),
       ),
     );
   }
@@ -1291,7 +1469,9 @@ class _HotelDetailPageState extends State<HotelDetailPage> {
                           ),
                         ],
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        
+                      },
                     ),
                   ],
                 )),
@@ -1314,6 +1494,7 @@ class _HotelDetailPageState extends State<HotelDetailPage> {
             width: _screenSize.width * 0.493,
             height: _screenSize.height * 0.8,
             decoration: BoxDecoration(
+                color: Colors.grey,
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
                     image: NetworkImage(
@@ -1342,6 +1523,7 @@ class _HotelDetailPageState extends State<HotelDetailPage> {
                               width: _screenSize.width * 0.198,
                               height: _screenSize.height * (0.19),
                               decoration: BoxDecoration(
+                                  color: Colors.grey,
                                   borderRadius: BorderRadius.circular(10),
                                   image: DecorationImage(
                                       image: NetworkImage(
@@ -1352,6 +1534,7 @@ class _HotelDetailPageState extends State<HotelDetailPage> {
                               width: _screenSize.width * 0.198,
                               height: _screenSize.height * (0.19),
                               decoration: BoxDecoration(
+                                  color: Colors.grey,
                                   borderRadius: BorderRadius.circular(10),
                                   image: DecorationImage(
                                       image: NetworkImage(
@@ -1372,6 +1555,7 @@ class _HotelDetailPageState extends State<HotelDetailPage> {
                               height: _screenSize.height * (0.19),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
+                                  color: Colors.grey,
                                   image: DecorationImage(
                                       image: NetworkImage(
                                           "https://images.unsplash.com/photo-1606046604972-77cc76aee944?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"),
@@ -1381,6 +1565,7 @@ class _HotelDetailPageState extends State<HotelDetailPage> {
                               width: _screenSize.width * 0.198,
                               height: _screenSize.height * (0.19),
                               decoration: BoxDecoration(
+                                  color: Colors.grey,
                                   borderRadius: BorderRadius.circular(10),
                                   image: DecorationImage(
                                       image: NetworkImage(
@@ -1397,6 +1582,7 @@ class _HotelDetailPageState extends State<HotelDetailPage> {
                   width: _screenSize.width * 0.4,
                   height: _screenSize.height * 0.39,
                   decoration: BoxDecoration(
+                      color: Colors.grey,
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                           image: NetworkImage(

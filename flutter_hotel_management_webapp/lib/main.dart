@@ -1,15 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hotel_management_webapp/model/hotel.dart';
+import 'package:flutter_hotel_management_webapp/pages/about.dart';
 import 'package:flutter_hotel_management_webapp/pages/home.dart';
+import 'package:flutter_hotel_management_webapp/pages/home1.dart';
 import 'package:flutter_hotel_management_webapp/pages/hoteldetailpage.dart';
 import 'package:flutter_hotel_management_webapp/pages/hotelsearchpage.dart';
+import 'package:flutter_hotel_management_webapp/pages/login.dart';
+import 'package:flutter_hotel_management_webapp/pages/utilityShow.dart';
 import 'package:flutter_hotel_management_webapp/pages/yourkindofstay.dart';
+import 'package:flutter_hotel_management_webapp/utilityWidgets/bookingsTrips.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final Map<String, Widget Function(BuildContext)> routes = {
+    // '/': (context) => HotelDetailPage(),
+    '/search': (context) => HotelSearchPage(),
+    '/detail': (context) => HotelDetailPage(),
+    '/yourkindofstay': (context) => YourKindOfStay(),
+    '/about': (context) => About(),
+    '/utility': (context) => ShowUtility(),
+    '/bookingstrips': (context) => BookingsTrips(),
+    '/login': (context) => Login(),
+    '/signup': (context) => SignUp(),
+  };
 
   // This widget is the root of your application.
   @override
@@ -36,8 +55,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HotelDetailPage(),
+      initialRoute: '/',
+      routes: routes,
+      home: Home(),
     );
   }
 }
-

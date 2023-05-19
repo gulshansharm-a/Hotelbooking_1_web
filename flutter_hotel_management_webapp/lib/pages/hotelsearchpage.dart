@@ -112,7 +112,7 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Image.asset('/images/1.png'),
+                                  Container(width: _screenSize.width*0.01,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("/images/1.png"))),),
                                   Image.asset('/images/2.png'),
                                   Image.asset('/images/3.png'),
                                   Image.asset('/images/4.png'),
@@ -193,6 +193,7 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
                         height: _screenSize.height * 0.4,
                         width: _screenSize.width * 0.2,
                         decoration: BoxDecoration(
+                          color: Colors.grey,
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 bottomLeft: Radius.circular(20)),
