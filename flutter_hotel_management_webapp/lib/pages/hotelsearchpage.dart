@@ -164,8 +164,12 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
             );
   }
 
-  Column _hotelDetail(Hotel hotel, Size _screenSize) {
-    return Column(
+  InkWell _hotelDetail(Hotel hotel, Size _screenSize) {
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).pushNamed('/detail');
+      },
+      child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
@@ -276,6 +280,7 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
           height: _screenSize.height * 0.05,
         )
       ],
+    ),
     );
   }
 

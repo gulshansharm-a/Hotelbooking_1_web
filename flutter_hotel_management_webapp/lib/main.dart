@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hotel_management_webapp/model/hotel.dart';
 import 'package:flutter_hotel_management_webapp/pages/about.dart';
+import 'package:flutter_hotel_management_webapp/pages/contactus.dart';
 import 'package:flutter_hotel_management_webapp/pages/home.dart';
 import 'package:flutter_hotel_management_webapp/pages/home1.dart';
 import 'package:flutter_hotel_management_webapp/pages/hoteldetailpage.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
     '/bookingstrips': (context) => BookingsTrips(),
     '/login': (context) => Login(),
     '/signup': (context) => SignUp(),
+    '/contactus': (context) => ContactUs(),
   };
 
   // This widget is the root of your application.

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dialogs/flutter_dialogs.dart';
+import 'package:flutter_hotel_management_webapp/pages/utilityShow.dart';
 
 class ReviewBook extends StatefulWidget {
   const ReviewBook({super.key});
@@ -115,7 +117,11 @@ class _ReviewBookState extends State<ReviewBook> {
                     height: _screenSize.height * 0.01,
                   ),
                   TextButton(
-                      style: ButtonStyle(backgroundColor:
+                      style: ButtonStyle(
+                        shape:  MaterialStateProperty.resolveWith((states) => RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8.0), // Set the desired border radius
+    ),),
+                        backgroundColor:
                           MaterialStateColor.resolveWith((states) {
                         if (states.contains(MaterialState.hovered))
                           return Colors.white;
@@ -128,7 +134,9 @@ class _ReviewBookState extends State<ReviewBook> {
                         else
                           return Colors.white;
                       })),
-                      onPressed: () {},
+                      onPressed: () {
+                       showPlatformDialog(context: context, builder: (_) => _pricePop());
+                      },
                       child: Container(
                         height: _screenSize.height*0.07,
                         width: _screenSize.width * 0.285,
@@ -150,6 +158,12 @@ class _ReviewBookState extends State<ReviewBook> {
           )
         ],
       ),
+    );
+  }
+
+  AlertDialog _pricePop () {
+    return AlertDialog(
+      content: PricePage(),
     );
   }
 

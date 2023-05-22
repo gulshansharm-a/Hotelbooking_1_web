@@ -1,5 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dialogs/flutter_dialogs.dart';
+import 'package:flutter_hotel_management_webapp/pages/login.dart';
+import 'package:flutter_hotel_management_webapp/utilityWidgets/hostproperty.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -9,6 +12,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+   Color _primaryColor = Color(0xFFE1F3FF);
+
   @override
   Widget build(BuildContext context) {
     Size _screenSize = MediaQuery.of(context).size;
@@ -26,6 +31,7 @@ class _HomeState extends State<Home> {
             children: [
               _titleBar(_screenSize),
               _mainBanner(_screenSize),
+              _searchFunctions(_screenSize),
               _yourKindOfStays(_screenSize),
               _offersSection(_screenSize),
               _popularLocations(_screenSize),
@@ -157,6 +163,112 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
+    );
+  }
+
+  Column _searchFunctions(Size _screenSize) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  color: Color(0xFFF5F5F5),
+                  borderRadius: BorderRadius.circular(10)),
+              width: _screenSize.width * 0.27,
+              child: ListTile(
+                leading: Icon(
+                  Icons.location_on_outlined,
+                  color: Color(0xFF222221),
+                ),
+                title: TextField(
+                  decoration: InputDecoration(
+                      hintText: 'Enter a city or hotel',
+                      border: InputBorder.none),
+                ),
+              ),
+            ),
+            // SizedBox(width: _screenSize.width*0.007,),
+            Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: Color(0xFFF5F5F5),
+                      borderRadius: BorderRadius.circular(10)),
+                  width: _screenSize.width * 0.15,
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.calendar_month,
+                      size: 20,
+                      color: Color(0xFF222221),
+                    ),
+                    title: TextField(
+                      decoration: InputDecoration(
+                          hintText: 'Thu 16 Nov', border: InputBorder.none),
+                    ),
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Color(0xFFF5F5F5),
+                      borderRadius: BorderRadius.circular(10)),
+                  width: _screenSize.width * 0.15,
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.calendar_month,
+                      size: 20,
+                      color: Colors.transparent,
+                    ),
+                    title: TextField(
+                      decoration: InputDecoration(
+                          hintText: 'Fri 17 Nov', border: InputBorder.none),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            // SizedBox(width: _screenSize.width*0.007,),
+            Container(
+              decoration: BoxDecoration(
+                  color: Color(0xFFF5F5F5),
+                  borderRadius: BorderRadius.circular(10)),
+              width: _screenSize.width * 0.27,
+              child: ListTile(
+                leading: Icon(
+                  Icons.account_circle_outlined,
+                  color: Color(0xFF222221),
+                ),
+                title: TextField(
+                  decoration: InputDecoration(
+                      hintText: '1 room, 2 guests', border: InputBorder.none),
+                ),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  color: _primaryColor,
+                  borderRadius: BorderRadius.circular(10)),
+              width: _screenSize.width * 0.04,
+              child: TextButton(
+                onPressed: () {
+                   Navigator.of(context).pushNamed('/search');
+                },
+                child: Container(
+                  height: 60,
+                  child: Icon(
+                    Icons.search,
+                    color: Color(0xFF222221),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: _screenSize.height * 0.07,
+        )
+      ],
     );
   }
 
@@ -403,6 +515,9 @@ class _HomeState extends State<Home> {
               _kindOfStayCard(_screenSize, onClick: () {
                 Navigator.of(context).pushNamed('/signup');
               }, title: "Sign Up"),
+              _kindOfStayCard(_screenSize, onClick: () {
+                Navigator.of(context).pushNamed('/contactus');
+              }, title: "Contact Us"),
             ]),
           ),
           SizedBox(
@@ -539,14 +654,18 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showPlatformDialog(context: context, builder: (_) => HostProperty());
+                      },
                       child: Container(
                         padding: EdgeInsets.fromLTRB(6, 9, 6, 9),
                         child: Text('Host your property', style: txtStyle),
                       ),
                       style: mainActionButtonsStyle),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showPlatformDialog(context: context, builder: (_) => Login());
+                    },
                     child: Container(
                       padding: EdgeInsets.fromLTRB(6, 9, 6, 9),
                       child: Text('Log In', style: txtStyle),
@@ -554,7 +673,9 @@ class _HomeState extends State<Home> {
                     style: mainActionButtonsStyle,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showPlatformDialog(context: context, builder: (_) => SignUp());
+                    },
                     child: Container(
                       padding: EdgeInsets.fromLTRB(6, 9, 6, 9),
                       child: Text('Sign Up', style: txtStyle),

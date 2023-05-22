@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hotel_management_webapp/model/hotel.dart';
+import 'package:flutter_dialogs/flutter_dialogs.dart';
+import 'package:flutter_hotel_management_webapp/utilityWidgets/review_and_book.dart';
 
 class HotelDetailPage extends StatefulWidget {
   const HotelDetailPage({super.key});
@@ -901,12 +903,21 @@ class _HotelDetailPageState extends State<HotelDetailPage> {
                       ],
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    showPlatformDialog(
+                      context: context,
+                      builder: (_) => _bookAlert(),
+                    );
+                  },
                 ),
               ],
             )),
       ],
     );
+  }
+
+  AlertDialog _bookAlert() {
+    return AlertDialog(content: ReviewBook());
   }
 
   Column _headingText(Size _screenSize) {
@@ -1469,9 +1480,7 @@ class _HotelDetailPageState extends State<HotelDetailPage> {
                           ),
                         ],
                       ),
-                      onPressed: () {
-                        
-                      },
+                      onPressed: () {},
                     ),
                   ],
                 )),
