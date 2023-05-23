@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dialogs/flutter_dialogs.dart';
 import 'package:flutter_hotel_management_webapp/pages/login.dart';
 import 'package:flutter_hotel_management_webapp/utilityWidgets/hostproperty.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,7 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-   Color _primaryColor = Color(0xFFE1F3FF);
+  Color _primaryColor = Color(0xFFE1F3FF);
 
   @override
   Widget build(BuildContext context) {
@@ -52,16 +55,16 @@ class _HomeState extends State<Home> {
           Text("Popular Locations",
               style: TextStyle(
                 fontFamily: 'Satoshi Variable',
-                fontSize: _screenSize.width * 0.02,
+                fontSize: 28,
                 fontWeight: FontWeight.w700,
                 height: 1.357,
                 letterSpacing: -0.1850000023841858,
               )),
           SizedBox(
-            height: _screenSize.height * 0.03,
+            height: 30,
           ),
           Container(
-            height: _screenSize.height * 0.5,
+            height: 350,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -83,39 +86,57 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Container _popularLocationCard(Size _screenSize) {
-    return Container(
-      height: _screenSize.height * 0.48,
-      width: _screenSize.width * 0.25,
-      padding: EdgeInsets.fromLTRB(0, 0, _screenSize.width * 0.016, 0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            height: _screenSize.height * 0.43,
-            width: (_screenSize.width * 0.945) / 3,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(
-                      "https://images.unsplash.com/photo-1546412414-e1885259563a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"),
-                  fit: BoxFit.cover),
-              borderRadius: BorderRadius.circular(_screenSize.width * 0.02),
-            ),
-          ),
-          Text(
-            "Hotels",
-            style: TextStyle(
-              fontFamily: 'Satoshi Variable',
-              fontSize: _screenSize.width * 0.016,
-              fontWeight: FontWeight.w500,
-              height: 1.33,
-              letterSpacing: -1.319239854812622,
-            ),
-          ),
-        ],
-      ),
-    );
+  FutureBuilder _popularLocationCard(Size _screenSize) {
+    
+    return FutureBuilder(
+        future:  http.get(Uri.parse('http://localhost:50774/books')),
+        builder: ((context, snapshot) {
+          print("hi");
+          if (snapshot.hasData)
+          {
+            
+            // List<dynamic> books = json.decode(snapshot.data.body);
+            List books = json.decode(snapshot.data.body);
+            print(books[0]);
+            return Container(
+              height: 310,
+              width: 300,
+              padding: EdgeInsets.fromLTRB(0, 0, _screenSize.width * 0.016, 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 275,
+                    width: 275,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(
+                              "https://images.unsplash.com/photo-1546412414-e1885259563a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"),
+                          fit: BoxFit.cover),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  Text(
+                    
+                    books[2]["title"],
+                    style: TextStyle(
+                      fontFamily: 'Satoshi Variable',
+                      fontSize: 23,
+                      fontWeight: FontWeight.w500,
+                      height: 1.33,
+                      letterSpacing: -1.319239854812622,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          } 
+          else {
+            
+            return Container();
+          }
+        }));
   }
 
   Padding _offersSection(Size _screenSize) {
@@ -127,14 +148,14 @@ class _HomeState extends State<Home> {
           Text("Offers",
               style: TextStyle(
                 fontFamily: 'Satoshi Variable',
-                fontSize: _screenSize.width * 0.02,
+                fontSize: 28,
                 fontWeight: FontWeight.w700,
                 height: 1.357,
                 letterSpacing: -0.1850000023841858,
               )),
           Divider(),
           Container(
-            height: _screenSize.height * 0.6,
+            height: 385,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -169,14 +190,13 @@ class _HomeState extends State<Home> {
   Column _searchFunctions(Size _screenSize) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+        ResponsiveBuilder(builder: (context, screensize) {
+          var searchActions = [
             Container(
               decoration: BoxDecoration(
                   color: Color(0xFFF5F5F5),
                   borderRadius: BorderRadius.circular(10)),
-              width: _screenSize.width * 0.27,
+              width: 350,
               child: ListTile(
                 leading: Icon(
                   Icons.location_on_outlined,
@@ -189,14 +209,20 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            // SizedBox(width: _screenSize.width*0.007,),
+            DeviceScreenType.desktop == screensize.deviceScreenType
+                ? SizedBox(
+                    width: 15,
+                  )
+                : SizedBox(
+                    height: 15,
+                  ),
             Row(
               children: [
                 Container(
                   decoration: BoxDecoration(
                       color: Color(0xFFF5F5F5),
                       borderRadius: BorderRadius.circular(10)),
-                  width: _screenSize.width * 0.15,
+                  width: 200,
                   child: ListTile(
                     leading: Icon(
                       Icons.calendar_month,
@@ -209,11 +235,18 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
+                DeviceScreenType.desktop == screensize.deviceScreenType
+                    ? SizedBox(
+                        width: 0,
+                      )
+                    : SizedBox(
+                        width: 15,
+                      ),
                 Container(
                   decoration: BoxDecoration(
                       color: Color(0xFFF5F5F5),
                       borderRadius: BorderRadius.circular(10)),
-                  width: _screenSize.width * 0.15,
+                  width: 200,
                   child: ListTile(
                     leading: Icon(
                       Icons.calendar_month,
@@ -228,12 +261,18 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            // SizedBox(width: _screenSize.width*0.007,),
+            DeviceScreenType.desktop == screensize.deviceScreenType
+                ? SizedBox(
+                    width: 15,
+                  )
+                : SizedBox(
+                    height: 15,
+                  ),
             Container(
               decoration: BoxDecoration(
                   color: Color(0xFFF5F5F5),
                   borderRadius: BorderRadius.circular(10)),
-              width: _screenSize.width * 0.27,
+              width: 350,
               child: ListTile(
                 leading: Icon(
                   Icons.account_circle_outlined,
@@ -245,14 +284,21 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
+            DeviceScreenType.desktop == screensize.deviceScreenType
+                ? SizedBox(
+                    width: 15,
+                  )
+                : SizedBox(
+                    height: 15,
+                  ),
             Container(
               decoration: BoxDecoration(
                   color: _primaryColor,
                   borderRadius: BorderRadius.circular(10)),
-              width: _screenSize.width * 0.04,
+              width: 60,
               child: TextButton(
                 onPressed: () {
-                   Navigator.of(context).pushNamed('/search');
+                  Navigator.of(context).pushNamed('/search');
                 },
                 child: Container(
                   height: 60,
@@ -263,8 +309,21 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-          ],
-        ),
+          ];
+          if (screensize.deviceScreenType == DeviceScreenType.desktop) {
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: searchActions),
+            );
+          } else {
+            return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: searchActions);
+          }
+        }),
         SizedBox(
           height: _screenSize.height * 0.07,
         )
@@ -278,8 +337,8 @@ class _HomeState extends State<Home> {
           _screenSize.width * 0.02, _screenSize.height * 0.02),
       child: Container(
         padding: EdgeInsets.all(_screenSize.width * 0.01),
-        width: _screenSize.width * 0.31,
-        height: _screenSize.height * 0.251,
+        width: 420,
+        height: 165,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(_screenSize.width * 0.01),
           color: Colors.white,
@@ -300,8 +359,8 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      height: _screenSize.height * 0.16,
-                      width: _screenSize.width * 0.08,
+                      height: 105,
+                      width: 110,
                       decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(_screenSize.width * 0.01),
@@ -311,7 +370,7 @@ class _HomeState extends State<Home> {
                               fit: BoxFit.cover)),
                     ),
                     Container(
-                      height: _screenSize.height * 0.16,
+                      height: 100,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -319,23 +378,23 @@ class _HomeState extends State<Home> {
                           Text("10% Instant savings",
                               style: TextStyle(
                                 fontFamily: 'Satoshi Variable',
-                                fontSize: _screenSize.width * 0.015,
+                                fontSize: 22,
                                 fontWeight: FontWeight.w700,
                                 height: 1.357,
                                 letterSpacing: -0.40799999237060547,
                               )),
                           Container(
-                            height: _screenSize.height * 0.008,
-                            width: _screenSize.width * 0.05,
+                            height: 5,
+                            width: 70,
                             color: Colors.orange,
                           ),
                           Container(
-                            width: _screenSize.width * 0.2,
+                            width: 270,
                             child: AutoSizeText(
                               "Save more than 10% on booking with Easyatra.Save more than 10% on booking with Easyatra.",
                               style: TextStyle(
                                 fontFamily: 'Satoshi Variable',
-                                fontSize: _screenSize.width * 0.01,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w400,
                                 height: 1.375,
                                 letterSpacing: -0.40799999237060547,
@@ -353,7 +412,7 @@ class _HomeState extends State<Home> {
                 Text("T&C's Apply",
                     style: TextStyle(
                       fontFamily: 'Satoshi Variable',
-                      fontSize: _screenSize.width * 0.01,
+                      fontSize: 14,
                       fontWeight: FontWeight.w400,
                       height: 1.333,
                       letterSpacing: -0.40799999237060547,
@@ -363,7 +422,7 @@ class _HomeState extends State<Home> {
                       style: TextStyle(
                         color: Colors.blue,
                         fontFamily: 'Satoshi Variable',
-                        fontSize: _screenSize.width * 0.012,
+                        fontSize: 18,
                         fontWeight: FontWeight.w700,
                         height: 1.375,
                         letterSpacing: -0.40799999237060547,
@@ -384,86 +443,105 @@ class _HomeState extends State<Home> {
       children: [
         Image.asset("images/BG1.jpg"),
         Container(
-          width: _screenSize.width * 0.6,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                height: 180,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 100,
-                      height: 50,
-                      child: Image.asset('/images/Easyatra.png'),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Easyatra provides good deals on'),
-                        Text('hotel booking and provides you'),
-                        Text('great and awesome offers.'),
-                      ],
-                    ),
-                    SizedBox(
-                      height: _screenSize.height * 0.02,
-                    ),
-                    Container(
-                      width: _screenSize.width * 0.11,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: ResponsiveBuilder(
+            builder: (context, screensize) {
+              var aboutOptions = [
+                Container(
+                  height: 180,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 100,
+                        height: 50,
+                        child: Image.asset('/images/Easyatra.png'),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            width: _screenSize.width * 0.01,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("/images/1.png"))),
-                          ),
-                          Image.asset('/images/2.png'),
-                          Image.asset('/images/3.png'),
-                          Image.asset('/images/4.png'),
+                          Text('Easyatra provides good deals on'),
+                          Text('hotel booking and provides you'),
+                          Text('great and awesome offers.'),
                         ],
                       ),
-                    )
-                  ],
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                          width: _screenSize.width * 0.11,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: _screenSize.width * 0.01,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage("/images/1.png"))),
+                                ),
+                                Image.asset('/images/2.png'),
+                                Image.asset('/images/3.png'),
+                                Image.asset('/images/4.png'),
+                              ],
+                            ),
+                          ))
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                height: _screenSize.height * 0.3,
-                width: _screenSize.width * 0.1,
-                child: Image.asset("images/playstore.png"),
-              ),
-              Container(
-                height: _screenSize.height * 0.3,
-                width: _screenSize.width * 0.1,
-                child: Image.asset("images/appstore.png"),
-              ),
-              Container(
-                height: 180,
-                padding: EdgeInsets.fromLTRB(0, _screenSize.height * 0.015, 0,
-                    _screenSize.height * 0.015),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Help',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    Text('Customer Support'),
-                    Text('Booking Details'),
-                    Text('Terms & Conditions'),
-                    Text('Privacy Policy'),
-                  ],
+                Container(
+                  height: 40,
+                  width: 100,
+                  child: Image.asset("images/playstore.png"),
                 ),
-              ),
-            ],
+                Container(
+                  height: 40,
+                  width: 100,
+                  child: Image.asset("images/appstore.png"),
+                ),
+                Container(
+                  height: 180,
+                  padding: EdgeInsets.fromLTRB(0, _screenSize.height * 0.015, 0,
+                      _screenSize.height * 0.015),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Help',
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      Text('Customer Support'),
+                      Text('Booking Details'),
+                      Text('Terms & Conditions'),
+                      Text('Privacy Policy'),
+                    ],
+                  ),
+                ),
+              ];
+              if (screensize.deviceScreenType == DeviceScreenType.desktop) {
+                return Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      _screenSize.width * 0.1,
+                      _screenSize.width * 0.02,
+                      _screenSize.width * 0.1,
+                      _screenSize.width * 0.02),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: aboutOptions),
+                );
+              } else {
+                return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: aboutOptions);
+              }
+            },
           ),
         ),
       ],
@@ -472,7 +550,7 @@ class _HomeState extends State<Home> {
 
   Container _yourKindOfStays(Size _screenSize) {
     return Container(
-      height: _screenSize.height * 0.42,
+      height: 300,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -480,13 +558,13 @@ class _HomeState extends State<Home> {
           Text("Your Kind of Stays",
               style: TextStyle(
                 fontFamily: 'Satoshi Variable',
-                fontSize: _screenSize.width * 0.02,
+                fontSize: 28,
                 fontWeight: FontWeight.w700,
                 height: 1.357,
                 letterSpacing: -0.1850000023841858,
               )),
           SizedBox(
-            height: _screenSize.height * 0.03,
+            height: 0,
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -531,8 +609,8 @@ class _HomeState extends State<Home> {
   Container _kindOfStayCard(Size _screenSize,
       {void Function()? onClick, String? title}) {
     return Container(
-        height: _screenSize.height * 0.3,
-        width: _screenSize.width * 0.21,
+        height: 200,
+        width: 270,
         padding: EdgeInsets.fromLTRB(0, 0, _screenSize.width * 0.016, 0),
         child: InkWell(
           child: Column(
@@ -540,8 +618,8 @@ class _HomeState extends State<Home> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: _screenSize.height * 0.25,
-                width: _screenSize.width * 0.2,
+                height: 160,
+                width: 250,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       image: NetworkImage(
@@ -554,7 +632,7 @@ class _HomeState extends State<Home> {
                 title ?? "Hotel",
                 style: TextStyle(
                   fontFamily: 'Satoshi Variable',
-                  fontSize: _screenSize.width * 0.016,
+                  fontSize: 23,
                   fontWeight: FontWeight.w500,
                   height: 1.33,
                   letterSpacing: -1.319239854812622,
@@ -584,7 +662,6 @@ class _HomeState extends State<Home> {
                       fit: BoxFit.cover)),
             ),
             Container(
-              height: _screenSize.height * 0.2,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -635,58 +712,79 @@ class _HomeState extends State<Home> {
           return Color(0xFF5E5E5E);
         }));
     TextStyle txtStyle = TextStyle(
-      fontSize: _screenSize.width * 0.013,
+      fontSize: 18,
       fontWeight: FontWeight.w400,
     );
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              width: 100,
-              height: 50,
-              child: Image.asset('/images/Easyatra.png'),
-            ),
-            Container(
-              width: _screenSize.width * 0.3,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                      onPressed: () {
-                        showPlatformDialog(context: context, builder: (_) => HostProperty());
-                      },
-                      child: Container(
-                        padding: EdgeInsets.fromLTRB(6, 9, 6, 9),
-                        child: Text('Host your property', style: txtStyle),
-                      ),
-                      style: mainActionButtonsStyle),
-                  TextButton(
-                    onPressed: () {
-                      showPlatformDialog(context: context, builder: (_) => Login());
-                    },
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(6, 9, 6, 9),
-                      child: Text('Log In', style: txtStyle),
-                    ),
-                    style: mainActionButtonsStyle,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      showPlatformDialog(context: context, builder: (_) => SignUp());
-                    },
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(6, 9, 6, 9),
-                      child: Text('Sign Up', style: txtStyle),
-                    ),
-                    style: mainActionButtonsStyle,
-                  ),
-                ],
+        ResponsiveBuilder(builder: (context, sizingInformation) {
+          var loginActions = [
+            TextButton(
+                onPressed: () {
+                  showPlatformDialog(
+                      context: context, builder: (_) => HostProperty());
+                },
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(6, 9, 6, 9),
+                  child: Text('Host your property', style: txtStyle),
+                ),
+                style: mainActionButtonsStyle),
+            TextButton(
+              onPressed: () {
+                showPlatformDialog(context: context, builder: (_) => Login());
+              },
+              child: Container(
+                padding: EdgeInsets.fromLTRB(6, 9, 6, 9),
+                child: Text('Log In', style: txtStyle),
               ),
-            )
-          ],
-        ),
+              style: mainActionButtonsStyle,
+            ),
+            TextButton(
+              onPressed: () {
+                showPlatformDialog(context: context, builder: (_) => SignUp());
+              },
+              child: Container(
+                padding: EdgeInsets.fromLTRB(6, 9, 6, 9),
+                child: Text('Sign Up', style: txtStyle),
+              ),
+              style: mainActionButtonsStyle,
+            ),
+          ];
+          if (sizingInformation.deviceScreenType == DeviceScreenType.desktop)
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 100,
+                  height: 50,
+                  child: Image.asset('/images/Easyatra.png'),
+                ),
+                Container(
+                  width: 400,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: loginActions),
+                )
+              ],
+            );
+          else
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 100,
+                  height: 50,
+                  child: Image.asset('/images/Easyatra.png'),
+                ),
+                Container(
+                  width: _screenSize.width * 0.3,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: loginActions),
+                )
+              ],
+            );
+        }),
         SizedBox(
           height: _screenSize.height * 0.03,
         )
