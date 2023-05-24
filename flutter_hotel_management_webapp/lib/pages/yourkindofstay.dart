@@ -11,91 +11,40 @@ class YourKindOfStay extends StatefulWidget {
 class _YourKindOfStayState extends State<YourKindOfStay> {
   final List<Hotel> _hotelsList = [
     Hotel(
-        name: "Sunset Inn",
-        cost: "3,493",
-        place: "Delhi",
-        rating: "4.5",
-        coverPage:
-            "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"),
-    Hotel(
-        name: "Sunset Inn",
-        cost: "3,493",
-        place: "Delhi",
-        rating: "4.5",
-        coverPage:
-            "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"),
-    Hotel(
-        name: "Sunset Inn",
-        cost: "3,493",
-        place: "Delhi",
-        rating: "4.5",
-        coverPage:
-            "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"),
-    Hotel(
-        name: "Sunset Inn",
-        cost: "3,493",
-        place: "Delhi",
-        rating: "4.5",
-        coverPage:
-            "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"),
-    Hotel(
-        name: "Sunset Inn",
-        cost: "3,493",
-        place: "Delhi",
-        rating: "4.5",
-        coverPage:
-            "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"),
-    Hotel(
-        name: "Sunset Inn",
-        cost: "3,493",
-        place: "Delhi",
-        rating: "4.5",
-        coverPage:
-            "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"),
+  id: 1,
+  name: "Grand Hotel",
+  place: "New York",
+  rating: 4.5,
+  popularamenities: "Swimming pool, Gym, Spa",
+  hotelimages: "hotel_image.jpg",
+  availableroomtype: ["Single", "Double", "Suite"],
+  description: "The Grand Hotel offers luxurious accommodations...",
+  cancellationpolicy: "Free cancellation up to 24 hours before check-in.",
+  rulesandregulations: "No smoking, No pets allowed.",
+  reviews: [
+    {"user": "John", "rating": 4.8, "comment": "Great hotel with excellent service."},
+    {"user": "Sarah", "rating": 4.2, "comment": "Comfortable rooms and friendly staff."}
+  ],
+)
+
   ];
   final List<Hotel> _trendinghotelsList = [
-    Hotel(
-        name: "Sunset Inn",
-        cost: "3,493",
-        place: "Delhi",
-        rating: "4.5",
-        coverPage:
-            "https://images.unsplash.com/photo-1528105817752-5c47696eef04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1484&q=80"),
-    Hotel(
-        name: "Sunset Inn",
-        cost: "3,493",
-        place: "Delhi",
-        rating: "4.5",
-        coverPage:
-            "https://images.unsplash.com/photo-1528105817752-5c47696eef04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1484&q=80"),
-    Hotel(
-        name: "Sunset Inn",
-        cost: "3,493",
-        place: "Delhi",
-        rating: "4.5",
-        coverPage:
-            "https://images.unsplash.com/photo-1528105817752-5c47696eef04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1484&q=80"),
-    Hotel(
-        name: "Sunset Inn",
-        cost: "3,493",
-        place: "Delhi",
-        rating: "4.5",
-        coverPage:
-            "https://images.unsplash.com/photo-1528105817752-5c47696eef04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1484&q=80"),
-    Hotel(
-        name: "Sunset Inn",
-        cost: "3,493",
-        place: "Delhi",
-        rating: "4.5",
-        coverPage:
-            "https://images.unsplash.com/photo-1528105817752-5c47696eef04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1484&q=80"),
-    Hotel(
-        name: "Sunset Inn",
-        cost: "3,493",
-        place: "Delhi",
-        rating: "4.5",
-        coverPage:
-            "https://images.unsplash.com/photo-1528105817752-5c47696eef04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1484&q=80"),
+   Hotel(
+  id: 1,
+  name: "Grand Hotel",
+  place: "New York",
+  rating: 4.5,
+  popularamenities: "Swimming pool, Gym, Spa",
+  hotelimages: "hotel_image.jpg",
+  availableroomtype: ["Single", "Double", "Suite"],
+  description: "The Grand Hotel offers luxurious accommodations...",
+  cancellationpolicy: "Free cancellation up to 24 hours before check-in.",
+  rulesandregulations: "No smoking, No pets allowed.",
+  reviews: [
+    {"user": "John", "rating": 4.8, "comment": "Great hotel with excellent service."},
+    {"user": "Sarah", "rating": 4.2, "comment": "Comfortable rooms and friendly staff."}
+  ],
+)
   ];
   final Color _primaryColor = Color(0xFFE1F3FF);
   @override
@@ -423,7 +372,7 @@ class _YourKindOfStayState extends State<YourKindOfStay> {
                                   borderRadius: BorderRadius.circular(20),
                                   image: DecorationImage(
                                       image: NetworkImage(
-                                        e.coverPage ?? "",
+                                        e.hotelimages ?? "",
                                       ),
                                       fit: BoxFit.cover)),
                               height: 450,
@@ -540,7 +489,7 @@ class _YourKindOfStayState extends State<YourKindOfStay> {
                                   color: Color(0xFFDA4167),
                                 ),
                                 padding: EdgeInsets.fromLTRB(5, 2, 5, 2),
-                                child: Text(hotel.rating + "/5",
+                                child: Text((hotel.rating as String) + "/5",
                                     style: TextStyle(
                                         fontFamily: 'Satoshi Variable',
                                         fontSize: 12,

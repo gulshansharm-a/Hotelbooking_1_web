@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hotel_management_webapp/model/hotel.dart';
 import 'package:flutter_dialogs/flutter_dialogs.dart';
 import 'package:flutter_hotel_management_webapp/utilityWidgets/review_and_book.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class HotelDetailPage extends StatefulWidget {
   const HotelDetailPage({super.key});
@@ -12,69 +14,91 @@ class HotelDetailPage extends StatefulWidget {
 }
 
 class _HotelDetailPageState extends State<HotelDetailPage> {
+  void _fetchHotels() async {
+    final response = await http.get(Uri.parse("http://localhost:3000/hotels"));
+    final List<dynamic> data = jsonDecode(response.body);
+
+    final List<Hotel> hotels =
+        data.map((item) => Hotel.fromJson(item)).toList();
+    hotelNotifier.value = hotels;
+  }
+
+  ValueNotifier<List<Hotel>> hotelNotifier = ValueNotifier([]);
+
   @override
   Widget build(BuildContext context) {
     Size _screenSize = MediaQuery.of(context).size;
-    Hotel hotel = Hotel(
-        name: "Sunset Inn",
-        cost: "3,493",
-        place: "Delhi",
-        rating: "4.5",
-        description:
-            "The Panoramic Hotel is a modern, elegant 4-star hotel overlooking the sea, perfect for a romantic, charming vacation, in the enchanting setting of Taormina and the Ionian Sea.\n\nThe rooms at the Panoramic Hotel are new, well-lit and inviting. Our reception staff will be happy to help you during your stay in Taormina, suggesting itineraries, guided visits and some good restaurants in the historic centre.\n\nWhile you enjoy a cocktail by the swimming pool on the rooftop terrace, you will be stunned by the breathtaking view of the bay of Isola Bella. Here, during your summer stays, our bar serves traditional Sicilian dishes, snacks and salads.At the end of a stairway across from the hotel, the white pebbles on the beach of Isola Bella await you as well as beach facilities with lounge chairs and umbrellas and areas with free access to the pristine clear sea that becomes deep just a few metres from the shore.At your disposal in your room, fast Wi-Fi ideal for smart working.Sky TV with all the latest releases from the big screen and Sport.Innovative air conditioning system with primary air exchange to prevent the spread of viruses such as Covid-19",
-        coverPage:
-            "https://images.unsplash.com/photo-1561053598-9b454d598460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=388&q=80");
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(
-            _screenSize.width * 0.05, 20, _screenSize.width * 0.05, 20),
-        child: Column(children: [
-          _titleBar(_screenSize),
-          _popularImages(_screenSize),
-          _hotelDetailsSection(_screenSize, hotel),
-          _roomCardScroller(_screenSize),
-          _hotelDescription(_screenSize, hotel),
-          _contentPolicy(_screenSize),
-          _rules(_screenSize),
-          Divider(
-            color: Colors.black,
-          ),
-          _reviewSection(_screenSize),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Similar Hotels",
-                style: TextStyle(
-                  decoration: TextDecoration.none,
-                  color: Colors.black,
-                  fontFamily: 'Satoshi Variable',
-                  fontSize: _screenSize.height * 0.05,
-                  fontWeight: FontWeight.w700,
-                  height: 57 / 42, // line-height / font-size
-                  letterSpacing: -0.9034286141395569,
-                ),
-              ),
-              SizedBox(
-                height: _screenSize.height * 0.015,
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(children: [
-                  _similarHotelCard(_screenSize),
-                  _similarHotelCard(_screenSize),
-                  _similarHotelCard(_screenSize),
-                  _similarHotelCard(_screenSize),
-                  _similarHotelCard(_screenSize),
+    _fetchHotels();
+    // _fetchHotels();
+    // Hotel hotel = Hotel(
+    //     name: "Sunset Inn",
+    //     cost: "3,493",
+    //     place: "Delhi",
+    //     rating: "4.5",
+    //     description:
+    //         "The Panoramic Hotel is a modern, elegant 4-star hotel overlooking the sea, perfect for a romantic, charming vacation, in the enchanting setting of Taormina and the Ionian Sea.\n\nThe rooms at the Panoramic Hotel are new, well-lit and inviting. Our reception staff will be happy to help you during your stay in Taormina, suggesting itineraries, guided visits and some good restaurants in the historic centre.\n\nWhile you enjoy a cocktail by the swimming pool on the rooftop terrace, you will be stunned by the breathtaking view of the bay of Isola Bella. Here, during your summer stays, our bar serves traditional Sicilian dishes, snacks and salads.At the end of a stairway across from the hotel, the white pebbles on the beach of Isola Bella await you as well as beach facilities with lounge chairs and umbrellas and areas with free access to the pristine clear sea that becomes deep just a few metres from the shore.At your disposal in your room, fast Wi-Fi ideal for smart working.Sky TV with all the latest releases from the big screen and Sport.Innovative air conditioning system with primary air exchange to prevent the spread of viruses such as Covid-19",
+    //     coverPage:
+    //         "https://images.unsplash.com/photo-1561053598-9b454d598460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=388&q=80");
+    return ValueListenableBuilder(
+        valueListenable: hotelNotifier,
+        builder: (context, value, child) {
+          if (value.isEmpty) {
+            return CircularProgressIndicator();
+          } else {
+            Hotel hotel = value[0];
+            return SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(
+                    _screenSize.width * 0.05, 20, _screenSize.width * 0.05, 20),
+                child: Column(children: [
+                  _titleBar(_screenSize),
+                  _popularImages(_screenSize),
+                  _hotelDetailsSection(_screenSize, hotel),
+                  _roomCardScroller(_screenSize),
+                  _hotelDescription(_screenSize, hotel),
+                  _contentPolicy(_screenSize),
+                  _rules(_screenSize),
+                  Divider(
+                    color: Colors.black,
+                  ),
+                  // _reviewSection(_screenSize),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Similar Hotels",
+                        style: TextStyle(
+                          decoration: TextDecoration.none,
+                          color: Colors.black,
+                          fontFamily: 'Satoshi Variable',
+                          fontSize: _screenSize.height * 0.05,
+                          fontWeight: FontWeight.w700,
+                          height: 57 / 42, // line-height / font-size
+                          letterSpacing: -0.9034286141395569,
+                        ),
+                      ),
+                      SizedBox(
+                        height: _screenSize.height * 0.015,
+                      ),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(children: [
+                          _similarHotelCard(_screenSize),
+                          _similarHotelCard(_screenSize),
+                          _similarHotelCard(_screenSize),
+                          _similarHotelCard(_screenSize),
+                          _similarHotelCard(_screenSize),
+                        ]),
+                      ),
+                    ],
+                  ),
+                  _pageFooter(_screenSize),
                 ]),
               ),
-            ],
-          ),
-          _pageFooter(_screenSize),
-        ]),
-      ),
-    );
+            );
+          }
+        });
   }
 
   Padding _similarHotelCard(Size _screenSize) {
@@ -1426,7 +1450,7 @@ class _HotelDetailPageState extends State<HotelDetailPage> {
                 color: Color(0xFFDA4167),
               ),
               padding: EdgeInsets.fromLTRB(5, 2, 5, 2),
-              child: Text(hotel.rating + "/5",
+              child: Text(hotel.rating.toString() + "/5",
                   style: TextStyle(
                       fontFamily: 'Satoshi Variable',
                       fontSize: 12,

@@ -202,7 +202,7 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
                                 topLeft: Radius.circular(20),
                                 bottomLeft: Radius.circular(20)),
                             image: DecorationImage(
-                                image: NetworkImage(hotel.coverPage ?? ""),
+                                image: NetworkImage(hotel.hotelimages ?? ""),
                                 fit: BoxFit.cover)),
                       ),
                       SizedBox(
@@ -337,7 +337,7 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
                   color: Color(0xFFDA4167),
                 ),
                 padding: EdgeInsets.fromLTRB(5, 2, 5, 2),
-                child: Text(hotel.rating + "/5",
+                child: Text((hotel.rating as String) + "/5",
                     style: TextStyle(
                         fontFamily: 'Satoshi Variable',
                         fontSize: 12,
@@ -620,50 +620,22 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
                 _screenSize.width * 0.03, 0, _screenSize.width * 0.03, 0),
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-              _hotelDetail(
-                  Hotel(
-                      name: "Sunset Inn",
-                      cost: "3,493",
-                      place: "Delhi",
-                      rating: "4.5",
-                      description:
-                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-                      coverPage:
-                          "https://images.unsplash.com/photo-1561053598-9b454d598460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=388&q=80"),
-                  _screenSize),
-              _hotelDetail(
-                  Hotel(
-                      name: "Sunset Inn",
-                      cost: "3,493",
-                      place: "Delhi",
-                      rating: "4.5",
-                      description:
-                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-                      coverPage:
-                          "https://images.unsplash.com/photo-1561053598-9b454d598460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=388&q=80"),
-                  _screenSize),
-              _hotelDetail(
-                  Hotel(
-                      name: "Sunset Inn",
-                      cost: "3,493",
-                      place: "Delhi",
-                      rating: "4.5",
-                      description:
-                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-                      coverPage:
-                          "https://images.unsplash.com/photo-1561053598-9b454d598460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=388&q=80"),
-                  _screenSize),
-              _hotelDetail(
-                  Hotel(
-                      name: "Sunset Inn",
-                      cost: "3,493",
-                      place: "Delhi",
-                      rating: "4.5",
-                      description:
-                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-                      coverPage:
-                          "https://images.unsplash.com/photo-1561053598-9b454d598460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=388&q=80"),
-                  _screenSize),
+              _hotelDetail(Hotel(
+  id: 1,
+  name: "Grand Hotel",
+  place: "New York",
+  rating: 4.5,
+  popularamenities: "Swimming pool, Gym, Spa",
+  hotelimages: "hotel_image.jpg",
+  availableroomtype: ["Single", "Double", "Suite"],
+  description: "The Grand Hotel offers luxurious accommodations...",
+  cancellationpolicy: "Free cancellation up to 24 hours before check-in.",
+  rulesandregulations: "No smoking, No pets allowed.",
+  reviews: [
+    {"user": "John", "rating": 4.8, "comment": "Great hotel with excellent service."},
+    {"user": "Sarah", "rating": 4.2, "comment": "Comfortable rooms and friendly staff."}
+  ],
+), _screenSize)
             ]),
           ),
         ),
